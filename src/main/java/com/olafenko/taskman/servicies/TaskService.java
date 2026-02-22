@@ -1,5 +1,6 @@
 package com.olafenko.taskman.servicies;
 
+import com.olafenko.taskman.exceptions.custom_exceptions.ResourceNotFoundException;
 import com.olafenko.taskman.models.Task;
 import com.olafenko.taskman.models.dtos.CreateTaskRequest;
 import com.olafenko.taskman.models.dtos.EditTaskRequest;
@@ -35,7 +36,7 @@ public class TaskService {
 
     public Task editTask(int id, EditTaskRequest editTaskRequest){
 
-        Task editedTask = taskRepository.findById(id).orElseThrow(()-> new RuntimeException("Task not found"));
+        Task editedTask = taskRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Task not found"));
 
         editedTask.setTitle(editTaskRequest.title());
         editedTask.setDescription(editTaskRequest.description());
@@ -48,7 +49,7 @@ public class TaskService {
 
     public void deleteTask(int id){
 
-        Task task = taskRepository.findById(id).orElseThrow(()-> new RuntimeException("Task not found"));
+        Task task = taskRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Task not found"));
 
         taskRepository.delete(task);
 

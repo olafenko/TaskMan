@@ -1,0 +1,8 @@
+package com.olafenko.taskman.exceptions.custom_exceptions;
+
+public class ResourceNotFoundException extends RuntimeException{
+    
+    public ResourceNotFoundException(String message) {
+        super(message);
+    }
+}
