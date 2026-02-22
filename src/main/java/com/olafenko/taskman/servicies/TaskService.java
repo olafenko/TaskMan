@@ -32,14 +32,14 @@ public class TaskService {
         return taskRepository.save(task);
     }
 
-    public Task editTask(int id,CreateTaskRequest updateTaskRequest){
+    public Task editTask(int id,CreateTaskRequest editTaskRequest){
 
         Task editedTask = taskRepository.findById(id).orElseThrow(()-> new RuntimeException("Task not found"));
 
-        editedTask.setTitle(updateTaskRequest.title());
-        editedTask.setDescription(updateTaskRequest.description());
-        editedTask.setStatus(updateTaskRequest.status());
-        editedTask.setPriority(updateTaskRequest.priority());
+        editedTask.setTitle(editTaskRequest.title());
+        editedTask.setDescription(editTaskRequest.description());
+        editedTask.setStatus(editTaskRequest.status());
+        editedTask.setPriority(editTaskRequest.priority());
         editedTask.setEditedAt(LocalDateTime.now());
 
         return taskRepository.save(editedTask);
