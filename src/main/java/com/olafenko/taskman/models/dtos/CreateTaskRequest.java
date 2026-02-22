@@ -2,6 +2,7 @@ package com.olafenko.taskman.models.dtos;
 
 import com.olafenko.taskman.models.enums.TaskPriority;
 import com.olafenko.taskman.models.enums.TaskStatus;
+import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -14,6 +15,7 @@ public record CreateTaskRequest(
         String title,
 
         @Size(max = 200, message = "Description max length is 200 chars.")
+        @Nullable
         String description,
 
         @NotNull(message = "Status is required.")
