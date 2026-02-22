@@ -2,6 +2,7 @@ package com.olafenko.taskman.controllers;
 
 import com.olafenko.taskman.models.Task;
 import com.olafenko.taskman.models.dtos.CreateTaskRequest;
+import com.olafenko.taskman.models.dtos.EditTaskRequest;
 import com.olafenko.taskman.servicies.TaskService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -28,7 +29,7 @@ public class TaskController {
     }
 
     @PutMapping("/edit/{id}")
-    public ResponseEntity<Task> editTask(@PathVariable("id") Integer id,@RequestBody CreateTaskRequest editTaskRequest){
+    public ResponseEntity<Task> editTask(@PathVariable("id") Integer id,@RequestBody EditTaskRequest editTaskRequest){
         return ResponseEntity.ok(taskService.editTask(id,editTaskRequest));
     }
 

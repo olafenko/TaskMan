@@ -2,6 +2,7 @@ package com.olafenko.taskman.servicies;
 
 import com.olafenko.taskman.models.Task;
 import com.olafenko.taskman.models.dtos.CreateTaskRequest;
+import com.olafenko.taskman.models.dtos.EditTaskRequest;
 import com.olafenko.taskman.repositories.TaskRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -32,7 +33,7 @@ public class TaskService {
         return taskRepository.save(task);
     }
 
-    public Task editTask(int id,CreateTaskRequest editTaskRequest){
+    public Task editTask(int id, EditTaskRequest editTaskRequest){
 
         Task editedTask = taskRepository.findById(id).orElseThrow(()-> new RuntimeException("Task not found"));
 
