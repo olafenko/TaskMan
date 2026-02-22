@@ -5,9 +5,7 @@ import com.olafenko.taskman.models.enums.TaskStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @Table(name = "tasks")
@@ -32,5 +30,14 @@ public class Task {
     //przy tworzeniu obiektu ustawia czas na terazniejszy
     private LocalDateTime createdAt = LocalDateTime.now();
 
+    private LocalDateTime editedAt;
+
+
+    public Task(String title,String description,TaskStatus status, TaskPriority priority){
+        this.title = title;
+        this.description = description;
+        this.status = status;
+        this.priority = priority;
+    }
 
 }

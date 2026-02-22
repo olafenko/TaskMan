@@ -1,4 +1,10 @@
 package com.olafenko.taskman.repositories;
 
-public interface TaskRepository {
+import com.olafenko.taskman.models.Task;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface TaskRepository extends JpaRepository<Task, Integer> {
+
 }
