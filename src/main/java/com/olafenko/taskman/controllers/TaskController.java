@@ -4,6 +4,7 @@ import com.olafenko.taskman.models.Task;
 import com.olafenko.taskman.models.dtos.CreateTaskRequest;
 import com.olafenko.taskman.models.dtos.EditTaskRequest;
 import com.olafenko.taskman.servicies.TaskService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,12 +25,12 @@ public class TaskController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Task> createTask(@RequestBody CreateTaskRequest createTaskRequest){
+    public ResponseEntity<Task> createTask(@RequestBody @Valid CreateTaskRequest createTaskRequest){
         return ResponseEntity.status(HttpStatus.CREATED).body(taskService.createTask(createTaskRequest));
     }
 
     @PutMapping("/edit/{id}")
-    public ResponseEntity<Task> editTask(@PathVariable("id") Integer id,@RequestBody EditTaskRequest editTaskRequest){
+    public ResponseEntity<Task> editTask(@PathVariable("id") Integer id, @Valid @RequestBody EditTaskRequest editTaskRequest){
         return ResponseEntity.ok(taskService.editTask(id,editTaskRequest));
     }
 
