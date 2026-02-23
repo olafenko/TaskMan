@@ -12,6 +12,8 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Task {
 
     @Id
@@ -35,13 +37,5 @@ public class Task {
     private LocalDateTime createdAt = LocalDateTime.now();
 
     private LocalDateTime editedAt;
-
-
-    public Task(String title,String description,TaskStatus status, TaskPriority priority){
-        this.title = title;
-        this.description = description;
-        this.status = status;
-        this.priority = priority;
-    }
 
 }

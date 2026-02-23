@@ -25,11 +25,11 @@ public class TaskService {
 
     public Task createTask(CreateTaskRequest createTaskRequest){
 
-        Task task = new Task(
-                createTaskRequest.title(),
-                createTaskRequest.description(),
-                createTaskRequest.status(),
-                createTaskRequest.priority());
+        Task task = Task.builder()
+                .title(createTaskRequest.title())
+                .description(createTaskRequest.description())
+                .status(createTaskRequest.status())
+                .priority(createTaskRequest.priority()).build();
 
         return taskRepository.save(task);
     }
