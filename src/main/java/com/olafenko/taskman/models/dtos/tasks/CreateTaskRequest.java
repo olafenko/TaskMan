@@ -1,4 +1,4 @@
-package com.olafenko.taskman.models.dtos;
+package com.olafenko.taskman.models.dtos.tasks;
 
 import com.olafenko.taskman.models.enums.TaskPriority;
 import com.olafenko.taskman.models.enums.TaskStatus;

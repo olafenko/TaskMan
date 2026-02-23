@@ -27,6 +27,10 @@ public class Task {
     @Enumerated(value = EnumType.STRING)
     private TaskPriority priority;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
     //przy tworzeniu obiektu ustawia czas na terazniejszy
     private LocalDateTime createdAt = LocalDateTime.now();
 

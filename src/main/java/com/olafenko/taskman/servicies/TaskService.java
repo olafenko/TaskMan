@@ -2,8 +2,8 @@ package com.olafenko.taskman.servicies;
 
 import com.olafenko.taskman.exceptions.custom_exceptions.ResourceNotFoundException;
 import com.olafenko.taskman.models.Task;
-import com.olafenko.taskman.models.dtos.CreateTaskRequest;
-import com.olafenko.taskman.models.dtos.EditTaskRequest;
+import com.olafenko.taskman.models.dtos.tasks.CreateTaskRequest;
+import com.olafenko.taskman.models.dtos.tasks.EditTaskRequest;
 import com.olafenko.taskman.repositories.TaskRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
