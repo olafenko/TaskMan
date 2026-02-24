@@ -6,15 +6,24 @@ import com.olafenko.taskman.models.dtos.users.RegistrationRequest;
 import com.olafenko.taskman.models.enums.Role;
 import com.olafenko.taskman.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class UserService {
+public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User not found"));
+    }
+
 
     public void register(RegistrationRequest registrationRequest) {
 
@@ -35,6 +44,7 @@ public class UserService {
         userRepository.save(user);
 
     }
+
 
 
 }
