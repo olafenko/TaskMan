@@ -1,4 +1,4 @@
-package com.olafenko.taskman.servicies;
+package com.olafenko.taskman.services;
 
 import com.olafenko.taskman.exceptions.custom_exceptions.ResourceAlreadyTakenException;
 import com.olafenko.taskman.models.User;

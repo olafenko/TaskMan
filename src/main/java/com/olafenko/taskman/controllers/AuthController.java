@@ -1,7 +1,7 @@
 package com.olafenko.taskman.controllers;
 
 import com.olafenko.taskman.models.dtos.users.RegistrationRequest;
-import com.olafenko.taskman.servicies.UserService;
+import com.olafenko.taskman.services.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

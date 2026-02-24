@@ -3,7 +3,7 @@ package com.olafenko.taskman.controllers;
 import com.olafenko.taskman.models.Task;
 import com.olafenko.taskman.models.dtos.tasks.CreateTaskRequest;
 import com.olafenko.taskman.models.dtos.tasks.EditTaskRequest;
-import com.olafenko.taskman.servicies.TaskService;
+import com.olafenko.taskman.services.TaskService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
