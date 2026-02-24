@@ -24,7 +24,6 @@ public class UserService implements UserDetailsService {
         return userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 
-
     public void register(RegistrationRequest registrationRequest) {
 
         if (userRepository.existsByEmail(registrationRequest.email()))
@@ -44,7 +43,6 @@ public class UserService implements UserDetailsService {
         userRepository.save(user);
 
     }
-
 
 
 }

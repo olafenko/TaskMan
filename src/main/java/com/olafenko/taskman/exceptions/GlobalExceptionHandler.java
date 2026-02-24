@@ -18,7 +18,7 @@ public class GlobalExceptionHandler {
 
     //handler obsługujący exception przychodzący z walidacji pól w requestach
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<List<String>> requestExceptionHandler(MethodArgumentNotValidException ex) {
+    public ResponseEntity<List<String>> handleRequestException(MethodArgumentNotValidException ex) {
 
         List<String> errors = new ArrayList<>();
         ex.getBindingResult().getFieldErrors().forEach(e -> errors.add(e.getDefaultMessage()));
@@ -27,17 +27,17 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(UsernameNotFoundException.class)
-    public ResponseEntity<String> usernameNotFoundExceptionHandler(UsernameNotFoundException ex) {
+    public ResponseEntity<String> handleUsernameNotFoundException(UsernameNotFoundException ex) {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ex.getMessage());
     }
 
     @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<String> resourceNotFoundExceptionHandler(ResourceNotFoundException ex) {
+    public ResponseEntity<String> handleResourceNotFoundException(ResourceNotFoundException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
     }
 
     @ExceptionHandler(ResourceAlreadyTakenException.class)
-    public ResponseEntity<String> resourceAlreadyTakenExceptionHandler(ResourceAlreadyTakenException ex) {
+    public ResponseEntity<String> handleResourceAlreadyTakenException(ResourceAlreadyTakenException ex) {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
     }
 
