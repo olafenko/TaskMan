@@ -30,7 +30,7 @@ public class Task {
     private TaskPriority priority;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id", nullable = true)
     private User user;
 
     //przy tworzeniu obiektu ustawia czas na terazniejszy
