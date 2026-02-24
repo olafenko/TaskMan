@@ -1,20 +1,20 @@
 package com.olafenko.taskman.repositories;
 
-import com.olafenko.taskman.models.User;
+import com.olafenko.taskman.models.AppUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends JpaRepository<AppUser, Long> {
 
 
-    Optional<User> findByEmail(String email);
+    Optional<AppUser> findByEmail(String email);
 
     Boolean existsByEmail(String email);
 
-    Optional<User> findByUsername(String username);
+    Optional<AppUser> findByUsername(String username);
 
     Boolean existsByUsername(String username);
 

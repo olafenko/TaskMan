@@ -19,7 +19,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class User implements UserDetails {
+public class AppUser implements UserDetails {
 
 
     @Id
@@ -30,7 +30,7 @@ public class User implements UserDetails {
     private String email;
     private String password;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "appUser")
     private List<Task> tasks = new ArrayList<>();
 
     @Enumerated(value = EnumType.STRING)

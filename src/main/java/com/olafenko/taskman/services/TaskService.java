@@ -18,7 +18,7 @@ public class TaskService {
     private final TaskRepository taskRepository;
 
 
-    //funkcja zwracajaca wszystkie zadania
+    //returns all Tasks
     public List<Task> getAllTasks(){
         return taskRepository.findAll();
     }

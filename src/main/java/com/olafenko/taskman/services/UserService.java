@@ -1,7 +1,7 @@
 package com.olafenko.taskman.services;
 
 import com.olafenko.taskman.exceptions.custom_exceptions.ResourceAlreadyTakenException;
-import com.olafenko.taskman.models.User;
+import com.olafenko.taskman.models.AppUser;
 import com.olafenko.taskman.models.dtos.users.RegistrationRequest;
 import com.olafenko.taskman.models.enums.Role;
 import com.olafenko.taskman.repositories.UserRepository;
@@ -34,13 +34,13 @@ public class UserService implements UserDetailsService {
 
         String hashedPassword = passwordEncoder.encode(registrationRequest.password());
 
-        User user = User.builder()
+        AppUser appUser = AppUser.builder()
                 .username(registrationRequest.username())
                 .password(hashedPassword)
                 .email(registrationRequest.email())
                 .role(Role.USER).build();
 
-        userRepository.save(user);
+        userRepository.save(appUser);
 
     }
 

@@ -31,9 +31,9 @@ public class Task {
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = true)
-    private User user;
+    private AppUser appUser;
 
-    //przy tworzeniu obiektu ustawia czas na terazniejszy
+    //after Task construct set time at now
     private LocalDateTime createdAt = LocalDateTime.now();
 
     private LocalDateTime editedAt;
