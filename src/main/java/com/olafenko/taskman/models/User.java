@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -26,7 +27,7 @@ public class User {
     private String password;
 
     @OneToMany(mappedBy = "user")
-    private List<Task> tasks;
+    private List<Task> tasks = new ArrayList<>();
 
     @Enumerated(value = EnumType.STRING)
     private Role role;

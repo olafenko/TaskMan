@@ -1,7 +1,12 @@
 package com.olafenko.taskman.servicies;
 
+import com.olafenko.taskman.exceptions.custom_exceptions.ResourceAlreadyTakenException;
+import com.olafenko.taskman.models.User;
+import com.olafenko.taskman.models.dtos.users.RegistrationRequest;
+import com.olafenko.taskman.models.enums.Role;
 import com.olafenko.taskman.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -9,8 +14,27 @@ import org.springframework.stereotype.Service;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
+    public void register(RegistrationRequest registrationRequest) {
 
+        if (userRepository.existsByEmail(registrationRequest.email()))
+            throw new ResourceAlreadyTakenException("Email is taken!");
+
+        if (userRepository.existsByUsername(registrationRequest.username()))
+            throw new ResourceAlreadyTakenException("Username is taken!");
+
+        String hashedPassword = passwordEncoder.encode(registrationRequest.password());
+
+        User user = User.builder()
+                .username(registrationRequest.username())
+                .password(hashedPassword)
+                .email(registrationRequest.email())
+                .role(Role.USER).build();
+
+        userRepository.save(user);
+
+    }
 
 
 }

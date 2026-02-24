@@ -1,5 +1,6 @@
 package com.olafenko.taskman.exceptions;
 
+import com.olafenko.taskman.exceptions.custom_exceptions.ResourceAlreadyTakenException;
 import com.olafenko.taskman.exceptions.custom_exceptions.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -15,17 +17,22 @@ public class GlobalExceptionHandler {
 
     //handler obsługujący exception przychodzący z walidacji pól w requestach
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<ArrayList<String>> requestExceptionHandler(MethodArgumentNotValidException ex){
+    public ResponseEntity<List<String>> requestExceptionHandler(MethodArgumentNotValidException ex) {
 
-        ArrayList<String> errors = new ArrayList<>();
+        List<String> errors = new ArrayList<>();
         ex.getBindingResult().getFieldErrors().forEach(e -> errors.add(e.getDefaultMessage()));
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors);
     }
 
     @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<String> resourceNotFoundExceptionHandler(ResourceNotFoundException ex){
+    public ResponseEntity<String> resourceNotFoundExceptionHandler(ResourceNotFoundException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+    }
+
+    @ExceptionHandler(ResourceAlreadyTakenException.class)
+    public ResponseEntity<String> resourceAlreadyTakenExceptionHandler(ResourceAlreadyTakenException ex) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
     }
 
 
