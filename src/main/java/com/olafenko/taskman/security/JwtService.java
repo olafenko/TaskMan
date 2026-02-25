@@ -39,7 +39,7 @@ public class JwtService {
                 .type("jwt")
                 .and()
                 .claims()
-                .add("username", userDetails.getUsername())
+                .subject(userDetails.getUsername())
                 .add("role", userDetails.getAuthorities())
                 .issuedAt(new Date())
                 .expiration(new Date(System.currentTimeMillis() + jwtExpirationTime))
