@@ -1,6 +1,6 @@
 package com.olafenko.taskman.controllers;
 
-import com.olafenko.taskman.models.dtos.users.RegistrationRequest;
+import com.olafenko.taskman.models.dtos.auth.RegistrationRequest;
 import com.olafenko.taskman.services.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

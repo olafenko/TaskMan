@@ -1,13 +1,17 @@
 package com.olafenko.taskman.security;
 
+import io.jsonwebtoken.JwtBuilder;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
+import java.util.Date;
 
 @Service
 public class JwtService {
@@ -28,10 +32,21 @@ public class JwtService {
     }
 
     //function that generate JWT
-    public String generateToken(){
+    public String generateToken(UserDetails userDetails){
 
+        JwtBuilder jwtBuilder = Jwts.builder()
+                .header()
+                .type("jwt")
+                .and()
+                .claims()
+                .add("username", userDetails.getUsername())
+                .add("role", userDetails.getAuthorities())
+                .issuedAt(new Date())
+                .expiration(new Date(System.currentTimeMillis() + jwtExpirationTime))
+                .and()
+                .signWith(secretKey);
 
-        return null;
+        return jwtBuilder.compact();
     }
 
 

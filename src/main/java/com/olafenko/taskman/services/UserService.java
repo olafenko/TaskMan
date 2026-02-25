@@ -2,7 +2,7 @@ package com.olafenko.taskman.services;
 
 import com.olafenko.taskman.exceptions.custom_exceptions.ResourceAlreadyTakenException;
 import com.olafenko.taskman.models.AppUser;
-import com.olafenko.taskman.models.dtos.users.RegistrationRequest;
+import com.olafenko.taskman.models.dtos.auth.RegistrationRequest;
 import com.olafenko.taskman.models.enums.Role;
 import com.olafenko.taskman.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;

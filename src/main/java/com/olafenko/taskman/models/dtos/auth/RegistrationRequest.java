@@ -1,4 +1,4 @@
-package com.olafenko.taskman.models.dtos.users;
+package com.olafenko.taskman.models.dtos.auth;
 
 import jakarta.validation.constraints.*;
 
