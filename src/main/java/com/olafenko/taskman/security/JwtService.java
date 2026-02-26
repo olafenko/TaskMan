@@ -1,6 +1,7 @@
 package com.olafenko.taskman.security;
 
 import io.jsonwebtoken.JwtBuilder;
+import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
@@ -47,6 +48,19 @@ public class JwtService {
                 .signWith(secretKey);
 
         return jwtBuilder.compact();
+    }
+
+    //function to validate token
+    public Boolean validateToken(String token){
+
+        try{
+            Jwts.parser().verifyWith(secretKey).build().parseSignedClaims(token);
+        } catch (JwtException exception){
+            System.out.println("TO DO");
+        }
+
+
+        return true;
     }
 
 
