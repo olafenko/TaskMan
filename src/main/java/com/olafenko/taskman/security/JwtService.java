@@ -1,9 +1,7 @@
 package com.olafenko.taskman.security;
 
-import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import jakarta.annotation.PostConstruct;
@@ -35,34 +33,36 @@ public class JwtService {
     //function that generate JWT
     public String generateToken(UserDetails userDetails){
 
-        JwtBuilder jwtBuilder = Jwts.builder()
-                .header()
-                .type("jwt")
-                .and()
-                .claims()
+        return  Jwts.builder()
                 .subject(userDetails.getUsername())
-                .add("role", userDetails.getAuthorities())
+                .claim("role", userDetails.getAuthorities())
                 .issuedAt(new Date())
                 .expiration(new Date(System.currentTimeMillis() + jwtExpirationTime))
-                .and()
-                .signWith(secretKey);
+                .signWith(secretKey)
+                .compact();
 
-        return jwtBuilder.compact();
     }
 
-    //function to validate token
     public Boolean validateToken(String token){
 
         try{
             Jwts.parser().verifyWith(secretKey).build().parseSignedClaims(token);
-        } catch (JwtException exception){
-            System.out.println("TO DO");
+            return true;
+        } catch (JwtException ex){
+            System.out.println("TOKEN NOT VALID");
+            return false;
         }
 
-
-        return true;
     }
 
+    public String extractUsernameFromToken(String token){
 
+        return Jwts.parser().verifyWith(secretKey).build().parseSignedClaims(token).getPayload().getSubject();
+    }
+
+    public String extractRoleFromToken(String token){
+
+        return Jwts.parser().verifyWith(secretKey).build().parseSignedClaims(token).getPayload().get("role", String.class);
+    }
 
 }
