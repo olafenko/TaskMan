@@ -5,6 +5,7 @@ import com.olafenko.taskman.models.AppUser;
 import com.olafenko.taskman.models.dtos.auth.RegistrationRequest;
 import com.olafenko.taskman.models.enums.Role;
 import com.olafenko.taskman.repositories.UserRepository;
+import com.olafenko.taskman.security.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

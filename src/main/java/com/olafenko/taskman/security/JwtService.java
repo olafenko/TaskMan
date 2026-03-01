@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class JwtService {
@@ -35,7 +36,7 @@ public class JwtService {
 
         return  Jwts.builder()
                 .subject(userDetails.getUsername())
-                .claim("role", userDetails.getAuthorities())
+                .claim("roles",userDetails.getAuthorities().stream().map(a -> a.getAuthority()).toList())
                 .issuedAt(new Date())
                 .expiration(new Date(System.currentTimeMillis() + jwtExpirationTime))
                 .signWith(secretKey)
@@ -60,9 +61,8 @@ public class JwtService {
         return Jwts.parser().verifyWith(secretKey).build().parseSignedClaims(token).getPayload().getSubject();
     }
 
-    public String extractRoleFromToken(String token){
-
-        return Jwts.parser().verifyWith(secretKey).build().parseSignedClaims(token).getPayload().get("role", String.class);
+    public List<String> extractRolesFromToken(String token){
+        return Jwts.parser().verifyWith(secretKey).build().parseSignedClaims(token).getPayload().get("roles",List.class);
     }
 
 }
